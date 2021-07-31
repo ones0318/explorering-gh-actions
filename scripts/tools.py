@@ -38,5 +38,4 @@ def main(event):
 if __name__ == '__main__':
     with open(os.environ['GITHUB_EVENT_PATH']) as event_fd:
         event = json.loads(event_fd.read())
-    print(event)
     main(event)
