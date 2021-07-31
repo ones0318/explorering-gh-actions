@@ -32,8 +32,7 @@ def main(event):
 
 
 if __name__ == '__main__':
-    context = os.path.join(os.environ['GITHUB_WORKSPACE'], 'job_context')
-    with open(os.path.join(context, 'event.json')) as event_fd:
+    with open(os.environ['GITHUB_EVENT_PATH']) as event_fd:
         event = json.loads(event_fd.read())
     # print(event)
     main(event)
