@@ -8,7 +8,7 @@ def get_pull_request_sha_range(event):
 
 
 def get_push_sha_range(event):
-    return event['event']['before'], event['event']['after']
+    return event['event']['before'], event['sha']
 
 
 def main(event):
