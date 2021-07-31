@@ -24,6 +24,8 @@ def main(event):
         raise ValueError(event_name)
     get_sha_range = event_name_to_sha_range[event_name]
     base_sha, this_sha = get_sha_range(event)
+    git_log = subprocess.check_output(['git', '--no-pager', 'log'])
+    print(git_log)
     diff_files = subprocess.check_output(['git', '--no-pager', 'diff', '--name-only', base_sha, this_sha])
     print(diff_files)
 
