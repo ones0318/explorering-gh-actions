@@ -2,6 +2,8 @@ name: exploring context
 
 on:
   push:
+    branches:
+      - main
   pull_request:
 
 jobs:
