@@ -19,5 +19,4 @@ jobs:
       - name: Execute
         run: |
           ls -al ${{ github.workspace }}
-          ls -al ${{ github.workspace }}/..
-          python scripts/tools.py ${{ github }}
+          python scripts/tools.py ${{ toJSON(github) }}
