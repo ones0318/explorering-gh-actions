@@ -4,17 +4,17 @@ import subprocess
 
 
 def get_pull_request_sha_range(event):
-    base_sha = event['event']['pull_request']['base']['sha']
+    base_sha = event['pull_request']['base']['sha']
     subprocess.check_call(['git', 'fetch', 'origin', base_sha])
-    this_sha = event['event']['pull_request']['head']['sha']
+    this_sha = event['pull_request']['head']['sha']
     subprocess.check_call(['git', 'fetch', 'origin', this_sha])
     return base_sha, this_sha
 
 
 def get_push_sha_range(event):
-    base_sha = event['event']['before']
+    base_sha = event['before']
     subprocess.check_call(['git', 'fetch', 'origin', base_sha])
-    this_sha = event['event']['after']
+    this_sha = event['after']
     subprocess.check_call(['git', 'fetch', 'origin', this_sha])
     return base_sha, this_sha
 
@@ -25,7 +25,7 @@ def main(event):
     :return:
     """
     # print(f'env: {os.environ}')
-    event_name = event['event_name']
+    event_name = os.environ['GITHUB_EVENT_NAME']
     event_name_to_sha_range = {'pull_request': get_pull_request_sha_range, 'pust': get_push_sha_range}
     if event_name not in event_name_to_sha_range:
         raise ValueError(event_name)
