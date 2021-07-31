@@ -23,4 +23,5 @@ jobs:
           python scripts/tools.py
       - name: Verify
         run: |
-          echo ${{ env.GITHUB_WORKSPACE }}/diff_files_${{ env.GITHUB_RUN_NUMBER }}.txt
+          echo ${{ github.workspace }}/diff_files_${{ github.run_number }}.txt
+          cat ${{ github.workspace }}/diff_files_${{ github.run_number }}.txt
