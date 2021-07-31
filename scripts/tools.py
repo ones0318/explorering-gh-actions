@@ -1,5 +1,5 @@
 import json
-import os
+# import os
 import subprocess
 
 
@@ -16,7 +16,7 @@ def main(event):
     :param event: github event, https://docs.github.com/en/developers/webhooks-and-events/events/github-event-types
     :return:
     """
-    print(f'env: {os.environ}')
+    # print(f'env: {os.environ}')
     this_event = event['event']
     event_name = event['event_name']
     event_name_to_sha_range = {'pull_request': get_pull_request_sha_range, 'pust': get_push_sha_range}
@@ -25,9 +25,9 @@ def main(event):
     get_sha_range = event_name_to_sha_range[event_name]
     base_sha, this_sha = get_sha_range(event)
     git_log = subprocess.check_output(['git', '--no-pager', 'log'])
-    print(git_log)
+    print(git_log.decode())
     diff_files = subprocess.check_output(['git', '--no-pager', 'diff', '--name-only', base_sha, this_sha])
-    print(diff_files)
+    print(diff_files.decode())
 
 
 if __name__ == '__main__':
