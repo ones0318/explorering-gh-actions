@@ -19,7 +19,8 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - uses: actions/checkout@v2
         with:
-          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+#          ref: ${{ github.head_ref }}
       - name: Execute
         run: |
           echo '${{ toJSON(github) }}' > event.json
