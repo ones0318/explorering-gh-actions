@@ -1,5 +1,5 @@
+import json
 import os
-import sys
 
 
 def main():
@@ -7,5 +7,7 @@ def main():
 
 
 if __name__ == '__main__':
-    print(f'argv: {sys.argv}')
+    with open('event.json') as event_fd:
+        event = json.loads(event_fd.read())
+    print(event)
     main()
