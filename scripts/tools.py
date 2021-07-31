@@ -4,11 +4,11 @@ import subprocess
 
 
 def get_pull_request_sha_range(event):
-    return event['event']['pull_request']['base']['sha'], event['sha']
+    return event['event']['pull_request']['base']['sha'], event['event']['pull_request']['head']['sha']
 
 
 def get_push_sha_range(event):
-    return event['event']['before'], event['sha']
+    return event['event']['before'], event['event']['after']
 
 
 def main(event):
