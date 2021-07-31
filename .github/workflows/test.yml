@@ -18,8 +18,10 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - uses: actions/checkout@v2
-#        with:
-#          fetch-depth: 0
       - name: Execute
         run: |
           python scripts/tools.py
+      - name: Verify
+        run: |
+          echo ${{ github.workspace }}/diff_files_${{ github.run_number }}.txt
+          cat ${{ github.workspace }}/diff_files_${{ github.run_number }}.txt
