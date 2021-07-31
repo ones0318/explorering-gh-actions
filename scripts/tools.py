@@ -4,7 +4,9 @@ import subprocess
 
 
 def get_pull_request_sha_range(event):
-    return event['event']['pull_request']['base']['sha'], event['event']['pull_request']['head']['sha']
+    base_sha = event['event']['pull_request']['base']['sha']
+    subprocess.check_call(['git', 'fetch', 'origin', base_sha])
+    return base_sha, event['event']['pull_request']['head']['sha']
 
 
 def get_push_sha_range(event):
