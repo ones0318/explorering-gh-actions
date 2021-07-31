@@ -26,7 +26,7 @@ def main(event):
     """
     # print(f'env: {os.environ}')
     event_name = os.environ['GITHUB_EVENT_NAME']
-    event_name_to_sha_range = {'pull_request': get_pull_request_sha_range, 'pust': get_push_sha_range}
+    event_name_to_sha_range = {'pull_request': get_pull_request_sha_range, 'push': get_push_sha_range}
     if event_name not in event_name_to_sha_range:
         raise ValueError(event_name)
     get_sha_range = event_name_to_sha_range[event_name]
