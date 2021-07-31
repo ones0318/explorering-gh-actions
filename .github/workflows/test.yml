@@ -1,0 +1,20 @@
+name: exploring context
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  run-unittest:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+#      - uses: actions/checkout@v2
+      - name: execute
+        uses: actions/setup-python@v2
+        run: |
+          python scripts/tools.py ${{ github }}
+        with:
+          python-version: ${{ matrix.python-version }}
