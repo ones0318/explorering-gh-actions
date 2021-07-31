@@ -12,7 +12,11 @@ def get_pull_request_sha_range(event):
 
 
 def get_push_sha_range(event):
-    return event['event']['before'], event['event']['after']
+    base_sha = event['event']['before']
+    subprocess.check_call(['git', 'fetch', 'origin', base_sha])
+    this_sha = event['event']['after']
+    subprocess.check_call(['git', 'fetch', 'origin', this_sha])
+    return base_sha, this_sha
 
 
 def main(event):
@@ -34,5 +38,5 @@ def main(event):
 if __name__ == '__main__':
     with open(os.environ['GITHUB_EVENT_PATH']) as event_fd:
         event = json.loads(event_fd.read())
-    # print(event)
+    print(event)
     main(event)
