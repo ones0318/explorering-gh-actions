@@ -32,7 +32,7 @@ def main():
     print(diff_files.decode().split())
     run_number = os.environ['GITHUB_RUN_NUMBER']
     with open(os.path.join(os.environ['GITHUB_WORKSPACE'], f'diff_files_{run_number}.txt'), 'w') as diff_fd:
-        diff_fd.write(diff_files)
+        diff_fd.write(diff_files.decode())
 
 
 if __name__ == '__main__':
