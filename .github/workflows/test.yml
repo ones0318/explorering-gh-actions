@@ -22,6 +22,7 @@ jobs:
 #          fetch-depth: 0
       - name: Execute
         run: |
-          echo '${{ toJSON(github) }}' > event.json
+          mkdir ${{ GITHUB_WORKSPACE }}/job_context
+          echo '${{ toJSON(github) }}' > ${{ env.GITHUB_WORKSPACE }}/job_context/event.json
           ls -al ${{ github.workspace }}
           python scripts/tools.py
